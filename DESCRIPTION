@@ -1,0 +1,19 @@
+Package: ixfr
+Type: Package
+Title: Access records from Index Fungorum
+Version: 0.0.0.999
+Author: person("Brendan", "Furneaux", email = "brendan.furneaux@ebc.uu.se", 
+role = c("Aut", "Cre"))
+Maintainer: Brendan Furneaux <brendan.furneaux@ebc.uu.se>
+Description: Looks up records using the Index Fungorum web API. Currently the
+    following are supported: AllUpdatedNames, AuthorSearch, NameByKey,
+    NameFullByKey
+Depends: R (>= 3.3.2)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    httr (>= 1.3.1),
+    xml2 (>= 1.1.1),
+    dplyr (>= 0.7.4),
+    purrr (>= 0.2.4)
