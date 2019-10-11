@@ -1,4 +1,4 @@
-Package: ixfr
+Package: fungorum
 Title: Access records from Index Fungorum
 Version: 0.0.1
 Authors@R: person("Brendan", "Furneaux", email = "brendan.furneaux@ebc.uu.se", role = c("aut", "cre"))
