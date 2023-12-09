@@ -1,11 +1,11 @@
 Package: fungorum
 Title: Access records from Index Fungorum
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: person("Brendan", "Furneaux", email = "brendan.furneaux@ebc.uu.se", role = c("aut", "cre"))
 Maintainer: Brendan Furneaux <brendan.furneaux@ebc.uu.se>
 Description: Looks up records using the Index Fungorum web API. Currently the
     following are supported: AllUpdatedNames, AuthorSearch, NameByKey,
-    NameFullByKey.
+    NameFullByKey, NamesByCurrentKey.
 Depends: R (>= 3.3.0)
 License: MIT + file LICENSE
 Encoding: UTF-8

@@ -282,6 +282,63 @@ ixf_NameByKey <- function(NameKey, verbose = FALSE, schema = NULL, ...) {
   return(data)
 }
 
+#' Look up all Index Fungorum records which list a given taxon as their current name.
+#'
+#' @param CurrentKey The record number (as \code{integer} or \code{character}) of
+#' the current taxon. May have length >1, in which case multiple queries will be sent.
+#' @param verbose If \code{TRUE}, print a message for each query sent to Index
+#' Fungorum.
+#' @param schema XML schema.  If the XML schema has already been parsed, it is
+#' faster to send it rather than parse it again.
+#' @param ... extra arguments passed to \code{\link{ixf_do_query}}
+#'
+#' @return A \code{\link[tibble]{tibble}} with one row for each synonym,
+#' containing the Index Fungorum records for the synonyms.
+#' @export
+#'
+#' @examples
+#' ixf_NameByCurrentKey(303114)
+ixf_NamesByCurrentKey <- function(CurrentKey, verbose = FALSE, schema = NULL, ...) {
+  if (length(CurrentKey) > 1) {
+    if (is.null(schema)) {
+      first <- ixf_do_query("NamesByCurrentKeyDs",
+                            CurrentKey = CurrentKey[1],
+                            verbose = verbose,...)
+      first <- httr::content(first,
+                             as = "parsed",
+                             type = "text/xml",
+                             encoding = "UTF-8")
+      schema <- ixf_parse_schema(first)
+      first <- ixf_parse_XML_table(first, schema)
+      data <- purrr::map_dfr(CurrentKey[-1], ixf_NamesByCurrentKey, verbose = verbose, schema = schema, ...)
+      data <- dplyr::bind_rows(first, data)
+    } else {
+      data <- purrr::map_dfr(
+        CurrentKey,
+        ixf_NamesByCurrentKey,
+        verbose = verbose,
+        schema = schema,
+        ...
+      )
+    }
+  } else {
+    if (verbose) cat("NamesByCurrentKey: CurrentKey =", CurrentKey, "\r",
+                     file = stderr())
+    if (is.null(schema)) {
+      data <- ixf_do_query("NamesByCurrentKeyDs", CurrentKey = CurrentKey, ...)
+      data <- httr::content(data,
+                            as = "parsed",
+                            type = "text/xml",
+                            encoding = "UTF-8")
+      schema <- ixf_parse_schema(data)
+    } else {
+      data <- ixf_do_query("NamesByCurrentKey", CurrentKey = CurrentKey, ...)
+    }
+    data <- ixf_parse_XML_table(data, schema)
+  }
+  return(data)
+}
+
 #' Find the full name of a taxon on Index Fungorum
 #'
 #' @param NameLsid The record number (as \code{integer} or \code{character}) of
