@@ -7,18 +7,42 @@
 \alias{ixf_EpithetSearch}
 \title{Search Index Fungorum}
 \usage{
-ixf_Search(SearchText, AnywhereInText = FALSE, MaxNumber = 1000,
+ixf_Search(
+  SearchText,
+  AnywhereInText = FALSE,
+  MaxNumber = 1000,
   search_type = c("AuthorSearch", "EpithetSearch", "NameSearch"),
-  verbose = FALSE, schema = NULL, ...)
+  verbose = FALSE,
+  schema = NULL,
+  ...
+)
 
-ixf_AuthorSearch(SearchText, AnywhereInText = FALSE, MaxNumber = 1000,
-  verbose = FALSE, schema = NULL, ...)
+ixf_AuthorSearch(
+  SearchText,
+  AnywhereInText = FALSE,
+  MaxNumber = 1000,
+  verbose = FALSE,
+  schema = NULL,
+  ...
+)
 
-ixf_NameSearch(SearchText, AnywhereInText = FALSE, MaxNumber = 1000,
-  verbose = FALSE, schema = NULL, ...)
+ixf_NameSearch(
+  SearchText,
+  AnywhereInText = FALSE,
+  MaxNumber = 1000,
+  verbose = FALSE,
+  schema = NULL,
+  ...
+)
 
-ixf_EpithetSearch(SearchText, AnywhereInText = FALSE, MaxNumber = 1000,
-  verbose = FALSE, schema = NULL, ...)
+ixf_EpithetSearch(
+  SearchText,
+  AnywhereInText = FALSE,
+  MaxNumber = 1000,
+  verbose = FALSE,
+  schema = NULL,
+  ...
+)
 }
 \arguments{
 \item{SearchText}{Text to search for. May have length >1, in which case

@@ -4,8 +4,7 @@
 \alias{ixf_do_query}
 \title{Send a query to Index Fungorum, with exponential backoff on retries.}
 \usage{
-ixf_do_query(querytype, timeout = 60, maxtries = 10, tries = 0,
-  wait = 1, ...)
+ixf_do_query(querytype, timeout = 60, maxtries = 10, tries = 0, wait = 1, ...)
 }
 \arguments{
 \item{querytype}{type of query}
